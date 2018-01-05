@@ -1,3 +1,7 @@
+#开发流程
+2018-1-5  导航条以及tab路由切换
+
+
 # vue-music
 
 > A Vue.js project
