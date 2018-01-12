@@ -2,11 +2,11 @@
 <template>
   <div class="recommend">
     <div class="recommend-content">
-      <div class="slider-wrapper">
+      <div v-if="recommends.length" class="slider-wrapper">
         <slider>
           <div v-for="item in recommends">
             <a :href="item.linkUrl">
-              <img :src="item.picUrl"/>
+              <img :src="item.picUrl" />
             </a>
           </div>
         </slider>
@@ -20,33 +20,29 @@
 </template>
 
 <script>
-import Slider from 'base/slider/slider';
+import Slider from "base/slider/slider";
 import { getRecommend } from "api/recommend";
 import { ERR_OK } from "api/config";
-
 export default {
   data() {
     return {
-      recommends:[]
+      recommends: []
     };
   },
   created() {
-    this._getRecommend()
+    this._getRecommend();
   },
   components: {
     Slider
   },
   computed: {},
   methods: {
-    _getRecommend(){
-      getRecommend().then(
-        (res) =>{
-          if(res.code===ERR_OK){
-            this.recommends = res.data.slider;
-            console.log(res.data.slider)
-          }
+    _getRecommend() {
+      getRecommend().then(res => {
+        if (res.code === ERR_OK) {
+          this.recommends = res.data.slider;
         }
-      )
+      });
     }
   }
 };
